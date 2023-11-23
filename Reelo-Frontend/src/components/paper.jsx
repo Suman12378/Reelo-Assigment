@@ -1,16 +1,18 @@
 import React from 'react';
 import { useLocation } from "react-router-dom"
-import "./styles/paper.scss";
+import "../styles/paper.scss";
 
 
 const Paper = ( ) => {
        const location = useLocation();
 
-       const {arr1, arr2, arr3} = location.state || {};
+       const {arr1, arr2, arr3} = location.state;
        
 
   return (
     <div className='paper'>
+
+          <h1 className='middle'> Total Marks {(arr2.length)+(arr1.length)*3 + (arr3.length)*5}</h1>
 
 
 
@@ -20,7 +22,7 @@ const Paper = ( ) => {
          arr2.map((i, index) => (
               <div className='section' key={i._id}>
                <h4  > Q{index+1} {i.question} </h4>
-               <h4>Subject is {i.subject}, Topic is {i.topic}</h4>
+               <h4><b>Subject</b> {i.subject}, <b>Topic</b> {i.topic}</h4>
               </div>
          ))
 
@@ -32,7 +34,7 @@ const Paper = ( ) => {
          arr1.map((i, index) => (
              <div className='section' key={i._id}>
                <h4  > Q{index+1} {i.question} </h4>
-               <h4>Subject is {i.subject}, Topic is {i.topic}</h4>
+               <h4><b>Subject</b> {i.subject}, <b>Topic</b> {i.topic}</h4>
               </div>
          ))
 
@@ -46,7 +48,7 @@ const Paper = ( ) => {
          arr3.map((i, index) => (
               <div className='section' key={i._id}>
                <h4  > Q{index+1} {i.question} </h4>
-               <h4>Subject is {i.subject}, Topic is {i.topic}</h4>
+               <h4><b>Subject</b> {i.subject}, <b>Topic</b> {i.topic}</h4>
               </div>
          ))
 

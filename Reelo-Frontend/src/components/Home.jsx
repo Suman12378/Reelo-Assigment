@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {useNavigate} from "react-router-dom"
-import "./styles/home.scss";
+import "../styles/home.scss";
 import axios from "axios";
 
 const Home = () => {
@@ -13,13 +13,13 @@ const Home = () => {
     });
 
     const navigate = useNavigate();
+    
 
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
 
-let arr = [];
 
    const submitHandler = async (e) => {
       console.log("hello baby");

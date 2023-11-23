@@ -4,7 +4,7 @@ const getPaper = async(req, res, next) => {
 
    var {totalMarks, easyPercent, mediumPercent, difficultPercent} = req.body;
 
-
+  // calculate the how many easy, medium and difficulty question asked by user
 
    difficultPercent = difficultPercent*totalMarks/100;
    mediumPercent = mediumPercent*totalMarks/100;
@@ -20,69 +20,19 @@ const getPaper = async(req, res, next) => {
 
   console.log(easyPercent);
   console.log(mediumPercent);
-  console.log(difficultPercent)
+  console.log(difficultPercent);
 
-   
+   // extract the data from the mongodb as per the user requirement and store it in arr1, arr2 and arr3
    
    let arr3 = await Questions.find({difficulty: "Hard"}).limit(difficultPercent);
    let arr1 = await Questions.find({difficulty:"Medium"}).limit(mediumPercent);
    let arr2 = await Questions.find({difficulty:"Easy"}).limit(easyPercent);
 
 
-
+  // return the succuss code and json file of easy, medium and hard
     
   return res.status(200).json({arr1, arr2, arr3});
     
-
-    
-
-    // let paper; 
-    // try{
-    //     paper = await Questions.find(); 
-    // }
-    // catch(err){ 
-    //     console.log(err);
-    // }
-
-    // if(!paper){
-    //     return res.status(404).json({ message: "No Users Found"});
-    // }
-
-    // return res.status(200).json({ paper });
 };
 
-
-
-const setPaper = async(req, res, next) => {
-    const { question, subject, topic, difficulty, mark } = req.body;
-
-    let existingQuestion;
-    try{
-         existingQestion = await Questions.findOne({question});
-    } catch(err){
-        return console.log(err);
-    }
-
-    if(existingQuestion){
-        return res.status(400).json({message: "Question Already Exist!"});
-    }
-
-   const paper = new Questions({
-     question,
-     subject,
-     topic,
-     difficulty,
-     mark
-   })
-
-    try{
-        paper.save();
-    } catch(err){
-       return console.log(err);
-    }
-
-
-    return res.status(201).json({paper});
-}
-
-module.exports = { getPaper, setPaper};
+module.exports = { getPaper };

@@ -1,6 +1,8 @@
 const express = require("express");
 
-const { getPaper, setPaper } = require("../controllers/question-controller");
+const { getPaper } = require("../controllers/question-controller");
+
+const setPaper = require("../controllers/set-controller");
 
 const paperRouter = express.Router();
 
